@@ -305,10 +305,10 @@ async function main() {
   function drawScene(time) {
     // time *= 0.001; // convert to seconds
 
-    console.log(
-      "entrou",
-      gl.getProgramParameter(meshProgramInfo.program, gl.LINK_STATUS)
-    );
+    console.log("entrou", {
+      rotationLocation,
+      rotation,
+    });
 
     twgl.resizeCanvasToDisplaySize(gl.canvas);
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
