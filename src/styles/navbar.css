@@ -1,0 +1,21 @@
+.nav_wrapper {
+  padding: 20px;
+  background-color: #333;
+  border-bottom: 1px solid #e5e5e5;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart__link a,
+.main__links a {
+  color: #fff;
+}
+.main__links {
+  display: flex;
+  gap: 20px;
+}
+
