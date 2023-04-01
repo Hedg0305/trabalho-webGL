@@ -1,59 +1,70 @@
 import { products } from "../data/products.js";
 import { createProductItem } from "../utils/index.js";
-import { parseOBJ, parseMTL } from "./utils/index.js";
+import {
+  parseOBJ,
+  parseMTL,
+  fragmentShaderSource,
+  vertexShaderSource,
+  generateTangents,
+} from "./utils/index.js";
 
 class Obj {
   constructor(obj, index) {
     this.href = obj.href;
-    // this.index = index;
+    this.index = index;
     this.name = obj.name;
     // this.textures = obj.textures;
     this.price = obj.price;
     this.id = obj.id;
     // this.textureIndex = this.textures[0].index;
-    // this.cameraTarget;
+    this.cameraTarget;
     this.cameraPosition;
-    // this.yRotation = degToRad(0);
-    // this.xRotation = degToRad(0);
+    this.yRotation = degToRad(0);
+    this.xRotation = degToRad(0);
 
     this.insertHTML();
 
-    // this.canvas = document.querySelector("#object" + String(index));
-    // this.gl = this.canvas.getContext("webgl2");
-    // if (!this.gl) {
-    //   return;
-    // }
-    // twgl.setAttributePrefix("a_");
-    // this.meshProgramInfo = twgl.createProgramInfo(this.gl, [
-    //   vertexShaderSource,
-    //   fragmentShaderSource,
-    // ]);
-
-    // this.render = this.render.bind(this);
+    this.render = this.render.bind(this);
 
     this.main();
   }
 
+  getCanvasAndContext() {
+    this.canvas = document.getElementById("canva__" + String(this.id));
+    console.log(this.id);
+    this.gl = this.canvas.getContext("webgl2");
+    if (!this.gl) {
+      return;
+    }
+    twgl.setAttributePrefix("a_");
+    this.meshProgramInfo = twgl.createProgramInfo(this.gl, [
+      vertexShaderSource,
+      fragmentShaderSource,
+    ]);
+  }
+
   async insertHTML() {
-    console.log("insertHTML");
     const htmlProduct = await createProductItem(this.name, this.price, this.id);
 
     const productList = document.querySelector("#product__list");
-    productList.innerHTML += htmlProduct;
+    const item = document.createElement("li");
+    item.innerHTML = htmlProduct;
+
+    productList.appendChild(item);
 
     // const cardSection = document.getElementById("items");
     // cardSection.appendChild(div.firstChild);
 
-    // const button = document.getElementById("buttonAdd" + String(this.index));
-    // button.addEventListener("click", () => {
-    //   addToCart(this.name, this.href, this.textureIndex, this.price);
-    // });
+    const button = document.getElementById("add_to_cart__" + String(this.id));
+    button.addEventListener("click", () => {
+      addToCart(this.name, this.href, this.price);
+    });
 
     // //inputs range
     // TODO: Add the parses
     const zoom = document.getElementById("zoom__" + String(this.id));
     zoom.addEventListener("input", () => {
-      const val = parseInt(zoom.value) * -0.1 + 8;
+      const val = parseInt(zoom.value) * -0.1 + 20;
       this.cameraPosition[2] = val;
     });
 
@@ -68,6 +79,8 @@ class Obj {
       const val = degToRad(parseInt(rotX.value));
       this.xRotation = val;
     });
+
+    this.getCanvasAndContext();
   }
 
   async main() {
@@ -77,25 +90,25 @@ class Obj {
 
     await this.loadTexture();
 
-    // const extents = this.getGeometriesExtents(this.obj.geometries);
-    // const range = m4.subtractVectors(extents.max, extents.min);
-    // // amount to move the object so its center is at the origin
-    // this.objOffset = m4.scaleVector(
-    //   m4.addVectors(extents.min, m4.scaleVector(range, 0.5)),
-    //   -1
-    // );
+    const extents = this.getGeometriesExtents(this.obj.geometries);
+    const range = m4.subtractVectors(extents.max, extents.min);
+    // amount to move the object so its center is at the origin
+    this.objOffset = m4.scaleVector(
+      m4.addVectors(extents.min, m4.scaleVector(range, 0.5)),
+      -1
+    );
 
-    // // figure out how far away to move the camera so we can likely
-    // // see the object.
-    // const radius = 8;
-    // this.cameraTarget = [0, 0, 0];
-    // this.cameraPosition = m4.addVectors(this.cameraTarget, [0, 0, radius]);
-    // // Set zNear and zFar to something hopefully appropriate
-    // // for the size of this object.
-    // this.zNear = radius / 50;
-    // this.zFar = radius * 3;
+    // figure out how far away to move the camera so we can likely
+    // see the object.
+    const radius = 60;
+    this.cameraTarget = [0, 0, 0];
+    this.cameraPosition = m4.addVectors(this.cameraTarget, [0, 0, radius]);
+    // Set zNear and zFar to something hopefully appropriate
+    // for the size of this object.
+    this.zNear = radius / 50;
+    this.zFar = radius * 3;
 
-    // requestAnimationFrame(this.render);
+    requestAnimationFrame(this.render);
   }
 
   async loadTexture() {
@@ -103,11 +116,6 @@ class Obj {
     const matTexts = await Promise.all(
       this.obj.materialLibs.map(async (filename) => {
         const matHref = new URL(filename, baseHref).href;
-        const novaString =
-          matHref.substring(0, matHref.indexOf(".mtl")) +
-          this.textureIndex +
-          ".mtl";
-
         const response = await fetch(matHref);
         return await response.text();
       })
@@ -292,7 +300,6 @@ class Obj {
 
 async function loadObjs() {
   const response = products;
-  // console.log(response);
   // const text = await response.text();
   // const objs = JSON.parse(text);
 

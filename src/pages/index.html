@@ -54,34 +54,34 @@
 
 </body>
 <script>
-  const inspectBtn = document.getElementById('inspectBtn');
-  const modal = document.querySelector('.modal__hide');
+  // const inspectBtn = document.getElementById('inspectBtn');
+  // const modal = document.querySelector('.modal__hide');
 
-  inspectBtn.addEventListener('click', () => {
-    modal.classList.remove('modal__hide');
-    // loadCanvasInspectRender();
-  });
+  // inspectBtn.addEventListener('click', () => {
+  //   modal.classList.remove('modal__hide');
+  //   // loadCanvasInspectRender();
+  // });
 
-  const modalClose = document.querySelector('.modal__close');
+  // const modalClose = document.querySelector('.modal__close');
 
-  modalClose.addEventListener('click', () => {
-    modal.classList.add('modal__hide');
-    // removeCanvasInspectRender();
-  });
+  // modalClose.addEventListener('click', () => {
+  //   modal.classList.add('modal__hide');
+  //   // removeCanvasInspectRender();
+  // });
 
-  function loadCanvasInspectRender() {
-    const head = document.querySelector('head');
-    const script = document.createElement('script');
-    script.src = '../renders/inspect.js';
-    script.type = 'module';
-    head.appendChild(script);
-  }
+  // function loadCanvasInspectRender() {
+  //   const head = document.querySelector('head');
+  //   const script = document.createElement('script');
+  //   script.src = '../renders/inspect.js';
+  //   script.type = 'module';
+  //   head.appendChild(script);
+  // }
 
-  function removeCanvasInspectRender() {
-    const head = document.querySelector('head');
-    const script = document.querySelector('script[src="../renders/inspect.js"]');
-    head.removeChild(script);
-  }
+  // function removeCanvasInspectRender() {
+  //   const head = document.querySelector('head');
+  //   const script = document.querySelector('script[src="../renders/inspect.js"]');
+  //   head.removeChild(script);
+  // }
 
 
 
@@ -93,7 +93,7 @@
 <script src="https://webgl2fundamentals.org/webgl/resources/m4.js"></script>
 <script src="https://webgl2fundamentals.org/webgl/resources/twgl-full.min.js"></script>
 <script src="https://webgl2fundamentals.org/webgl/resources/webgl-lessons-ui.js"></script>
-
+<script src="../renders/utils/utils.js"></script>
 <script src="../utils/importHeader.js"></script>
 <script type="module" src="../renders/products.js"></script>
 <!-- <script type="module" src="../renders/arma1.js"></script>

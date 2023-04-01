@@ -15,6 +15,10 @@ main {
   margin: 0 auto;
 }
 
+li {
+  list-style: none;
+}
+
 .produtos {
   display: flex;
   gap: 20px;
@@ -22,10 +26,19 @@ main {
 }
 
 .produto {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
 }
 
 .produto canvas {
-  max-width: 150px;
+  max-width: 400px;
+  height: 400px;
 }
 
 .modal__inspect {
@@ -76,4 +89,3 @@ main {
 .modal__show {
   visibility: visible;
 }
-
