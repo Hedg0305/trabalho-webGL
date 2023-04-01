@@ -14,7 +14,6 @@
 
   <div id="loading">
     <div class="spinner"></div>
-
   </div>
 
   <nav id="nav__bar"></nav>
@@ -24,28 +23,7 @@
       <h1>Selecione seu salgadinho </h1>
     </div>
     <div class="produtos">
-      <div class="produto">
-        <canvas id="produto1"></canvas>
-        <h2>Salgadinho 1</h2>
-        <p>Descrição do salgadinho 1</p>
-        <p>R$ 5,00</p>
-        <button>Adicionar ao carrinho</button>
-        <button id="inspectBtn">Inspect</button>
-      </div>
-      <div class="produto">
-        <canvas id="produto2"></canvas>
-        <h2>Salgadinho 2</h2>
-        <p>Descrição do salgadinho 2</p>
-        <p>R$ 5,00</p>
-        <button>Adicionar ao carrinho</button>
-      </div>
-      <div class="produto">
-        <canvas id="produto3"></canvas>
-        <h2>Salgadinho 3</h2>
-        <p>Descrição do salgadinho 3</p>
-        <p>R$ 5,00</p>
-        <button>Adicionar ao carrinho</button>
-      </div>
+      <ul id="product__list"></ul>
     </div>
   </main>
 
@@ -116,10 +94,10 @@
 <script src="https://webgl2fundamentals.org/webgl/resources/twgl-full.min.js"></script>
 <script src="https://webgl2fundamentals.org/webgl/resources/webgl-lessons-ui.js"></script>
 
-
 <script src="../utils/importHeader.js"></script>
-<script type="module" src="../renders/arma1.js"></script>
-<script type="module" src="../renders/inspect.js"></script>
+<script type="module" src="../renders/products.js"></script>
+<!-- <script type="module" src="../renders/arma1.js"></script>
+<script type="module" src="../renders/inspect.js"></script> -->
 
 
 </html>

@@ -21,4 +21,3 @@ const styles = document.createElement("link");
 styles.href = "../styles/navbar.css";
 styles.rel = "stylesheet";
 document.head.appendChild(styles);
-

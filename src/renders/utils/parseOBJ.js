@@ -151,3 +151,4 @@ export function parseOBJ(text) {
     materialLibs,
   };
 }
+
