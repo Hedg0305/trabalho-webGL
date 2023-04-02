@@ -12,6 +12,7 @@
 }
 
 .cart__link a,
+.cart__link,
 .main__links a {
   color: #fff;
 }

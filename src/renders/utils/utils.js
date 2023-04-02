@@ -2,6 +2,14 @@ const degToRad = (d) => (d * Math.PI) / 180;
 
 const radToDeg = (r) => (r * 180) / Math.PI;
 
+const updateCart = () => {
+  var cart = JSON.parse(localStorage.getItem("cart"));
+  if (cart == null) {
+    cart = [];
+  }
+  document.getElementById("total").innerHTML = `${cart.length}`;
+};
+
 const addToCart = (itemName, objHref, price) => {
   //get the cart from local storage, if dont exist create it
   var cart = JSON.parse(localStorage.getItem("cart"));

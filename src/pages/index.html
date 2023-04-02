@@ -19,6 +19,7 @@
   <nav id="nav__bar"></nav>
 
   <main class="main">
+    <canvas id="main__BG"></canvas>
     <div class="main__header">
       <h1>Selecione seu salgadinho </h1>
     </div>
@@ -27,67 +28,10 @@
     </div>
   </main>
 
-  <div class="modal__hide">
-    <div class="modal__inspect">
-      <div class="modal__content">
-        <div class="modal__header">
-          <h2>Inspeção</h2>
-          <button class="modal__close">X</button>
-        </div>
-        <div class="modal__body">
-          <canvas id="inspect__canvas"></canvas>
-        </div>
-        <div class="modal__buttons">
-          <div id="uiContainer">
-            <div id="ui">
-              <div id="x"></div>
-              <div id="y"></div>
-              <div id="angle"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <script src="../utils/loaderHidder.js"></script>
 
 </body>
-<script>
-  // const inspectBtn = document.getElementById('inspectBtn');
-  // const modal = document.querySelector('.modal__hide');
-
-  // inspectBtn.addEventListener('click', () => {
-  //   modal.classList.remove('modal__hide');
-  //   // loadCanvasInspectRender();
-  // });
-
-  // const modalClose = document.querySelector('.modal__close');
-
-  // modalClose.addEventListener('click', () => {
-  //   modal.classList.add('modal__hide');
-  //   // removeCanvasInspectRender();
-  // });
-
-  // function loadCanvasInspectRender() {
-  //   const head = document.querySelector('head');
-  //   const script = document.createElement('script');
-  //   script.src = '../renders/inspect.js';
-  //   script.type = 'module';
-  //   head.appendChild(script);
-  // }
-
-  // function removeCanvasInspectRender() {
-  //   const head = document.querySelector('head');
-  //   const script = document.querySelector('script[src="../renders/inspect.js"]');
-  //   head.removeChild(script);
-  // }
-
-
-
-
-</script>
-
 
 <script src="https://webgl2fundamentals.org/webgl/resources/webgl-utils.js"></script>
 <script src="https://webgl2fundamentals.org/webgl/resources/m4.js"></script>
@@ -96,8 +40,6 @@
 <script src="../renders/utils/utils.js"></script>
 <script src="../utils/importHeader.js"></script>
 <script type="module" src="../renders/products.js"></script>
-<!-- <script type="module" src="../renders/arma1.js"></script>
-<script type="module" src="../renders/inspect.js"></script> -->
-
+<!-- <script type="module" src="../renders/bgHome.js"></script> -->
 
 </html>

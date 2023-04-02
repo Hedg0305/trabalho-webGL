@@ -31,7 +31,6 @@ class Obj {
 
   getCanvasAndContext() {
     this.canvas = document.getElementById("canva__" + String(this.id));
-    console.log(this.id);
     this.gl = this.canvas.getContext("webgl2");
     if (!this.gl) {
       return;
@@ -64,7 +63,7 @@ class Obj {
     // TODO: Add the parses
     const zoom = document.getElementById("zoom__" + String(this.id));
     zoom.addEventListener("input", () => {
-      const val = parseInt(zoom.value) * -0.1 + 20;
+      const val = parseInt(zoom.value) * -2 + 80;
       this.cameraPosition[2] = val;
     });
 
@@ -100,7 +99,7 @@ class Obj {
 
     // figure out how far away to move the camera so we can likely
     // see the object.
-    const radius = 60;
+    const radius = 80;
     this.cameraTarget = [0, 0, 0];
     this.cameraPosition = m4.addVectors(this.cameraTarget, [0, 0, radius]);
     // Set zNear and zFar to something hopefully appropriate
@@ -299,19 +298,7 @@ class Obj {
 }
 
 async function loadObjs() {
-  const response = products;
-  // const text = await response.text();
-  // const objs = JSON.parse(text);
-
   const arrayObjs = [];
-  // var cart = JSON.parse(localStorage.getItem("cart"));
-  // if (cart == null) {
-  //   cart = [];
-  // } else {
-  //   cart = JSON.parse(localStorage.getItem("cart"));
-  // }
-
-  // document.getElementById("total").innerHTML = `${cart.length}`;
 
   products.forEach((obj, index) => {
     arrayObjs.push(new Obj(obj, index));

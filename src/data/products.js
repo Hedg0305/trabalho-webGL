@@ -1,20 +1,20 @@
 export const products = [
   {
     id: 1,
-    name: "Cadeira",
-    price: 100,
-    href: "../objs/lego1/LEGO_CAR_B2.obj",
+    name: "luke",
+    price: 299.99,
+    href: "../objs/lego4/luke.obj",
   },
   {
     id: 2,
-    name: "Cadeira",
-    price: 100,
-    href: "../objs/lego2/LEGO_CAR_B1.obj",
+    name: "Leia",
+    price: 350,
+    href: "../objs/lego5/leia.obj",
   },
   {
     id: 3,
-    name: "Cadeira",
-    price: 100,
+    name: "Bat movel",
+    price: 500,
     href: "../objs/lego3/batmobile.obj",
   },
 ];

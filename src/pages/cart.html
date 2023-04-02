@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="import" href="navbar.html" id="import__header">
   <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/cart.css">
 
 </head>
 
@@ -15,11 +16,63 @@
   </div>
 
   <nav id="nav__bar"></nav>
-  <h1>cart</h1>
+  <main class="main__cart">
+    <div class="cart__products">
+      <canvas id="cart__products"></canvas>
+      <div class="remove__items">
+      </div>
+    </div>
+  </main>
 
 
   <script src="../utils/loaderHidder.js"></script>
 </body>
+<script>
+  const removeItems = document.querySelector('.remove__items');
+  const items = JSON.parse(localStorage.getItem('cart')).reverse()
+  console.log(items)
+
+  if (items) {
+    items.forEach(item => {
+      const div = document.createElement('div');
+      div.classList.add('remove__item');
+      div.innerHTML = `
+        <div class="remove__item__name">
+          <h3>${item.name}</h3>
+        </div>
+        <div class="remove__item__price">
+          <p>R$: ${item.price}</p>
+        </div>
+        <div class="remove__item__remove">
+          <button class="remove__item__btn" data-id="${item.id}">Remove</button>
+        </div>
+      `;
+      removeItems.appendChild(div);
+    });
+  }
+
+  const removeItemBtns = document.querySelectorAll('.remove__item__btn')
+  const coorectOrder = Array.from(removeItemBtns).reverse();
+
+  coorectOrder.forEach((btn, btnIndex) => {
+    btn.addEventListener('click', (e) => {
+      const id = e.target.dataset.id;
+      const items = JSON.parse(localStorage.getItem('cart'));
+      // must filter by indexes
+      const filteredItems = items.filter((item, index) => index !== btnIndex);
+      localStorage.setItem('cart', JSON.stringify(filteredItems));
+      location.reload();
+    });
+  });
+
+</script>
+
+<script src="https://webgl2fundamentals.org/webgl/resources/webgl-utils.js"></script>
+<script src="https://webgl2fundamentals.org/webgl/resources/m4.js"></script>
+<script src="https://webgl2fundamentals.org/webgl/resources/twgl-full.min.js"></script>
+<script src="https://webgl2fundamentals.org/webgl/resources/webgl-lessons-ui.js"></script>
+<script src="../renders/utils/utils.js"></script>
 <script src="../utils/importHeader.js"></script>
+<script type="module" src="../renders/cart.js"></script>
 
 </html>
